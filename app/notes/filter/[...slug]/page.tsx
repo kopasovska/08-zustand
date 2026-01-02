@@ -15,14 +15,14 @@ export async function generateMetadata({
   params,
 }: NotesPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const tag = slug[0] === 'all' ? 'All' : slug[0];
+  const tag = slug[0] === 'all' ? 'all' : slug[0];
   return {
     title: `${tag} notes`,
     description: `Filtered notes by ${tag} tag`,
     openGraph: {
       title: `${tag} notes`,
       description: `Filtered notes by ${tag} tag`,
-      url: `https://08-zustand-three-puce.vercel.app/`,
+      url: `https://08-zustand-three-puce.vercel.app/filter/${tag}`,
       siteName: 'NoteHub',
       images: [
         {

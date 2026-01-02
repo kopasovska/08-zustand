@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import css from './NotesPage.module.css';
 import NoteList from '@/components/NoteList/NoteList';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import { useDebouncedCallback } from 'use-debounce';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
@@ -25,7 +23,6 @@ const NotesClient = ({ tag }: NotesClientProps) => {
     queryKey: ['notes', currentPage, search, tag],
     queryFn: () => fetchNotes(currentPage, search, tag),
     placeholderData: keepPreviousData,
-    refetchOnMount: false,
   });
 
   useEffect(() => {
