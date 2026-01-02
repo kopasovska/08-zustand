@@ -22,7 +22,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 30),
-      url: `https://notehub.com/`,
+      url: `https://08-zustand-three-puce.vercel.app/`,
       siteName: 'NoteHub',
       images: [
         {
