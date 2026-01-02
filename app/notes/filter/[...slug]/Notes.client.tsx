@@ -11,6 +11,7 @@ import NoteForm from '@/components/NoteForm/NoteForm';
 import { useDebouncedCallback } from 'use-debounce';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
+import Link from 'next/link';
 
 interface NotesClientProps {
   tag?: string;
@@ -19,7 +20,6 @@ interface NotesClientProps {
 const NotesClient = ({ tag }: NotesClientProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ['notes', currentPage, search, tag],
@@ -55,17 +55,12 @@ const NotesClient = ({ tag }: NotesClientProps) => {
             updateCurrentPage={updateCurrentPage}
           />
         )}
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
 
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onClose={() => setIsModalOpen(false)} />
-        </Modal>
-      )}
     </div>
   );
 };
